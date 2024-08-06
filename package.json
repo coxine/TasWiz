@@ -6,7 +6,6 @@
   "scripts": {
     "build": "vite build",
     "dev": "vite",
-    "typecheck": "tsc -b",
     "format": "prettier --write .",
     "lint": "eslint ."
   },
@@ -23,8 +22,6 @@
     "eslint-plugin-react": "^7.35.0",
     "globals": "^15.9.0",
     "prettier": "^3.3.3",
-    "typescript": "^5.5.4",
-    "typescript-eslint": "^8.0.0-alpha.60",
     "vite": "^5.3.4"
   }
 }
