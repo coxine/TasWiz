@@ -2,10 +2,9 @@ import globals from "globals";
 import pluginJs from "@eslint/js";
 import pluginReact from "eslint-plugin-react";
 
-
 const reactConfig = {
-  name: 'react-eslint',
-  files: ['**/*.{js,jsx,mjs,cjs,ts,tsx}'],
+  name: "react-eslint",
+  files: ["**/*.{js,jsx,mjs,cjs,ts,tsx}"],
   plugins: {
     react: pluginReact,
   },
@@ -19,11 +18,11 @@ const reactConfig = {
   },
   rules: {
     ...pluginReact.configs.recommended.rules,
-    'react/react-in-jsx-scope': 0,
+    "react/react-in-jsx-scope": 0,
   },
   settings: {
     react: {
-      version: 'detect',
+      version: "detect",
     },
   },
 };
@@ -33,9 +32,9 @@ export default [
   {
     languageOptions: {
       globals: globals.browser,
-    }
+    },
   },
   pluginJs.configs.recommended,
   pluginReact.configs.flat.recommended,
-  reactConfig
+  reactConfig,
 ];
