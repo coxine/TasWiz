@@ -1,9 +1,9 @@
-import "./App.css";
-
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 import { AuthProvider } from "./utils/AuthContext";
 import DashboardPage from "./pages/Dashboard";
+import GuestRoute from "./utils/GuestRoute";
+import HomePage from "./pages/Home";
 import ProtectedRoute from "./utils/ProtectedRoute";
 import React from "react";
 import SignInPage from "./pages/auth/SignIn";
@@ -18,12 +18,29 @@ const App = () => {
             path="/"
             element={
               <ProtectedRoute>
+                <HomePage />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/signin" element={
+            <GuestRoute>
+              <SignInPage />
+            </GuestRoute>
+          } />
+
+          <Route path="/signup" element={
+            <GuestRoute>
+              <SignUpPage />
+            </GuestRoute>
+          } />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
                 <DashboardPage />
               </ProtectedRoute>
             }
           />
-          <Route path="/signin" element={<SignInPage />} />
-          <Route path="/signup" element={<SignUpPage />} />
         </Routes>
       </Router>
     </AuthProvider>
