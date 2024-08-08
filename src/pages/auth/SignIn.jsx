@@ -11,7 +11,6 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { useAuth } from "../../utils/AuthContext";
 
-
 export default function SignIn() {
   const { login } = useAuth();
   const handleSubmit = async (event) => {
@@ -20,7 +19,6 @@ export default function SignIn() {
     await login(data.get("username"), data.get("password"));
     window.location.href = "/";
   };
-
 
   return (
     <Container component="main" maxWidth="xs">
