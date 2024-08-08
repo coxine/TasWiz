@@ -29,14 +29,17 @@ const reactConfig = {
 
 const importSortConfig = {
   rules: {
-    "sort-imports": ["error", {
-      "ignoreCase": false,
-      "ignoreDeclarationSort": false,
-      "ignoreMemberSort": false,
-      "memberSyntaxSortOrder": ["none", "all", "multiple", "single"],
-      "allowSeparatedGroups": false
-    }]
-  }
+    "sort-imports": [
+      "error",
+      {
+        ignoreCase: false,
+        ignoreDeclarationSort: false,
+        ignoreMemberSort: false,
+        memberSyntaxSortOrder: ["none", "all", "multiple", "single"],
+        allowSeparatedGroups: false,
+      },
+    ],
+  },
 };
 
 export default [
@@ -46,7 +49,7 @@ export default [
       globals: globals.browser,
     },
   },
-  { ignores: ["node_modules/", "dist/", "build/"], },
+  { ignores: ["node_modules/", "dist/", "build/"] },
 
   pluginJs.configs.recommended,
   pluginReact.configs.flat.recommended,

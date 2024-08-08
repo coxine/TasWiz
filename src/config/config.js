@@ -1,7 +1,7 @@
-const backendUrl = 'http://localhost:3000';
+const backendUrl = "http://localhost:3000";
 
 const config = {
-    backendUrl,
+  backendUrl,
 };
 
 export default config;
