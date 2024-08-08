@@ -13,16 +13,12 @@ import { useAuth } from "../../utils/AuthContext";
 
 
 export default function SignIn() {
-  const { login, isAuthenticated } = useAuth();
+  const { login } = useAuth();
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      username: data.get("username"),
-      password: data.get("password"),
-    });
     await login(data.get("username"), data.get("password"));
-    console.log(isAuthenticated);
+    window.location.href = "/";
   };
 
 

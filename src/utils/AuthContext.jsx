@@ -1,5 +1,6 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext } from "react";
 import PropTypes from "prop-types";
+import axios from "axios";
 import config from "../config/config";
 
 const AuthContext = createContext();
@@ -9,31 +10,63 @@ export const AuthProvider = ({ children }) => {
         children: PropTypes.node.isRequired,
     };
 
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const isTokenValid = async () => {
+        try {
+            const token = localStorage.getItem("token");
+            const response = await axios.post(
+                `${config.backendUrl}/api/isTokenValid`,
+                {},
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
 
-    const login = async (username, password) => {
-        const response = await fetch(`${config.backendUrl}/api/login`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ username, password }),
-        });
-
-        if (response.ok) {
-            const data = await response.json();
-            localStorage.setItem("token", data.token);
-            setIsAuthenticated(true);
-            return true;
-        } else {
-            console.error("登录失败");
+            if (response.status === 200) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (error) {
+            console.error("请求失败", error);
             return false;
         }
+    }
+
+    const login = async (username, password) => {
+        try {
+            const response = await axios.post(`${config.backendUrl}/api/login`, {
+                "username": username,
+                "password": password,
+            },
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
+
+            if (response.status === 200) {
+                const data = response.data;
+                localStorage.setItem("token", data.token);
+                localStorage.setItem("username", username);
+                console.log("登录成功");
+            } else {
+                localStorage.removeItem("token");
+                console.error("登录失败");
+            }
+        } catch (error) {
+            console.error("请求失败", error);
+        }
     };
-    const logout = () => setIsAuthenticated(false);
+
+    const logout = () => {
+        localStorage.removeItem("token");
+    };
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+        <AuthContext.Provider value={{ login, logout, isTokenValid }}>
             {children}
         </AuthContext.Provider>
     );

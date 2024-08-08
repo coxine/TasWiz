@@ -4,9 +4,8 @@ import React from "react";
 import { useAuth } from "./AuthContext";
 
 const ProtectedRoute = ({ children }) => {
-  const { isAuthenticated } = useAuth();
-
-  if (!isAuthenticated) {
+  const { isTokenValid } = useAuth();
+  if (!isTokenValid) {
     return <Navigate to="/signin" />;
   }
 
@@ -16,5 +15,6 @@ const ProtectedRoute = ({ children }) => {
 ProtectedRoute.propTypes = {
   children: PropTypes.node.isRequired,
 };
+
 
 export default ProtectedRoute;
