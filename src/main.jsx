@@ -24,6 +24,7 @@ const RootComponent = () => {
           secondary: green,
         },
       }),
+
     [prefersDarkMode],
   );
 

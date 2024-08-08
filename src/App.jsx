@@ -11,15 +11,13 @@ import SignUpPage from "./pages/auth/SignUp";
 
 const App = () => {
   return (
-    <AuthProvider>
+    <AuthProvider >
       <Router>
         <Routes>
           <Route
             path="/"
             element={
-              <ProtectedRoute>
-                <HomePage />
-              </ProtectedRoute>
+              <HomePage />
             }
           />
           <Route path="/signin" element={
@@ -43,7 +41,7 @@ const App = () => {
           />
         </Routes>
       </Router>
-    </AuthProvider>
+    </AuthProvider >
   );
 };
 

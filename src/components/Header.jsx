@@ -1,6 +1,6 @@
 import * as React from "react";
 import { AppBar, Box, IconButton, Toolbar, Typography } from "@mui/material";
-import { GitHub } from "@mui/icons-material";
+import { GitHub, Home } from "@mui/icons-material";
 import { Link } from "@mui/material";
 
 export default function Header() {
@@ -14,6 +14,11 @@ export default function Header() {
           <Link href="https://github.com/coxine/TasWiz">
             <IconButton>
               <GitHub />
+            </IconButton>
+          </Link>
+          <Link href="/">
+            <IconButton>
+              <Home />
             </IconButton>
           </Link>
         </Toolbar>
