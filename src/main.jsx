@@ -3,13 +3,13 @@ import "./index.css";
 import * as React from "react";
 
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { green, lightGreen } from "@mui/material/colors";
 
 import App from "./App.jsx";
 import CssBaseline from "@mui/material/CssBaseline";
 import Footer from "./components/Footer.jsx";
 import Header from "./components/Header.jsx";
 import ReactDOM from "react-dom/client";
+import { green } from "@mui/material/colors";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 const RootComponent = () => {
@@ -21,7 +21,7 @@ const RootComponent = () => {
         palette: {
           mode: prefersDarkMode ? "dark" : "light",
           primary: green,
-          secondary: lightGreen,
+          secondary: green,
         },
       }),
     [prefersDarkMode],

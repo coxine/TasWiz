@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   build: {
     commonjsOptions: {
-      esmExternals: true
+      esmExternals: true,
     },
-  }
+  },
 });
