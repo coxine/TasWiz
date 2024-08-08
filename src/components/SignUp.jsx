@@ -12,8 +12,6 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 
-
-
 export default function SignUp() {
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -41,12 +39,7 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <Box
-          component="form"
-          noValidate
-          onSubmit={handleSubmit}
-          sx={{ mt: 3 }}
-        >
+        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -92,9 +85,7 @@ export default function SignUp() {
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel
-                control={
-                  <Checkbox value="allowExtraEmails" color="primary" />
-                }
+                control={<Checkbox value="allowExtraEmails" color="primary" />}
                 label="I want to receive inspiration, marketing promotions and updates via email."
               />
             </Grid>

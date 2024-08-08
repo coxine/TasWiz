@@ -12,7 +12,6 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 
-
 export default function SignIn() {
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -40,12 +39,7 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <Box
-          component="form"
-          onSubmit={handleSubmit}
-          noValidate
-          sx={{ mt: 1 }}
-        >
+        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField
             margin="normal"
             required
