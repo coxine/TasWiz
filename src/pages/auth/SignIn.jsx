@@ -16,8 +16,9 @@ export default function SignIn() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    await login(data.get("username"), data.get("password"));
-    window.location.href = "/dashboard";
+    login(data.get("username"), data.get("password")).then(() => {
+      window.location.href = "/dashboard";
+    });
   };
 
   return (

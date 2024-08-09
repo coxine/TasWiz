@@ -81,7 +81,6 @@ export default function Home() {
                   <Button
                     variant="contained"
                     color="primary"
-                    sx={{ my: 2 }}
                     fullWidth
                   >
                     登录
@@ -93,7 +92,6 @@ export default function Home() {
                   <Button
                     variant="outlined"
                     color="primary"
-                    sx={{ my: 2 }}
                     fullWidth
                   >
                     注册

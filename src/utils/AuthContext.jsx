@@ -67,10 +67,45 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
+  }; const register = async (username, password) => {
+    try {
+      const response = await axios.post(
+        `${config.backendUrl}/api/register`,
+        {
+          username: username,
+          password: password,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      );
+
+      if (response.status === 200) {
+        const data = response.data;
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("username", username);
+        console.log("注册成功");
+      } else {
+        alert("注册失败，请重试");
+        throw new Error("注册失败，请重试");
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 409) {
+        alert("用户名已存在");
+        throw new Error("用户名已存在");
+      } else {
+        alert("注册失败，请重试");
+        throw new Error("注册失败，请重试");
+      }
+    }
   };
 
+
+
   return (
-    <AuthContext.Provider value={{ login, logout, isTokenValid }}>
+    <AuthContext.Provider value={{ register, login, logout, isTokenValid }}>
       {children}
     </AuthContext.Provider>
   );

@@ -9,16 +9,25 @@ import Link from "@mui/material/Link";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+import { useAuth } from "../../utils/AuthContext";
 
 export default function SignUp() {
-  const handleSubmit = (event) => {
+  const { register } = useAuth();
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-  };
+    if (data.get("password") !== data.get("passwordConfirm")) {
+      alert("两次输入的密码不一致");
+      return;
+    }
+    try {
+      await register(data.get("username"), data.get("password"));
+      window.location.href = "/dashboard";
+    } catch (error) {
+      console.error("注册失败", error);
+    }
+
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -58,6 +67,17 @@ export default function SignUp() {
                 label="密码"
                 type="password"
                 id="password"
+                autoComplete="new-password"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                required
+                fullWidth
+                name="passwordConfirm"
+                label="确认密码"
+                type="password"
+                id="passwordConfirm"
                 autoComplete="new-password"
               />
             </Grid>
