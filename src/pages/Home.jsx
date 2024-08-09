@@ -4,12 +4,12 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import { Grid } from '@mui/material';
+import GuestComponent from '../utils/GuestComponent';
+import { Link } from 'react-router-dom';
+import ProtectedComponent from '../utils/ProtectedComponent';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { alpha } from '@mui/material/styles';
-import { Link } from 'react-router-dom';
-import GuestComponent from '../utils/GuestComponent';
-import ProtectedComponent from '../utils/ProtectedComponent';
 
 export default function Home() {
   return (

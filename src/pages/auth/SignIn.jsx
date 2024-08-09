@@ -18,7 +18,7 @@ export default function SignIn() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     await login(data.get("username"), data.get("password"));
-    window.location.href = "/";
+    window.location.href = "/dashboard";
   };
 
 
