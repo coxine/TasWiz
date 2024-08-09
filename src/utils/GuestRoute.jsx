@@ -1,10 +1,11 @@
 import { Navigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import React from "react";
-import { useAuth } from "./AuthContext";
+
 
 const GuestRoute = ({ children }) => {
-  const { isTokenValid } = useAuth();
+
+  const isTokenValid = localStorage.getItem("token") !== null;
   if (!isTokenValid) {
     return children;
   }

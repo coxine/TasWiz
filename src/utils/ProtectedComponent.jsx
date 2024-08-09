@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
-import { useAuth } from "./AuthContext";
+
 
 const ProtectedComponent = ({ children }) => {
-    const { isTokenValid } = useAuth();
+
+    const isTokenValid = localStorage.getItem("token") !== null;
     if (!isTokenValid) {
         return null;
     }
