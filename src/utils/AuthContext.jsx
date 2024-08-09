@@ -69,7 +69,8 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
-  }; const register = async (username, password) => {
+  };
+  const register = async (username, password) => {
     try {
       const response = await axios.post(
         `${config.backendUrl}/api/register`,
@@ -103,8 +104,6 @@ export const AuthProvider = ({ children }) => {
       }
     }
   };
-
-
 
   return (
     <AuthContext.Provider value={{ register, login, logout, isTokenValid }}>

@@ -26,8 +26,7 @@ export default function SignUp() {
     } catch (error) {
       console.error("注册失败", error);
     }
-
-  }
+  };
 
   return (
     <Container component="main" maxWidth="xs">

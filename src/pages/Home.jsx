@@ -78,22 +78,14 @@ export default function Home() {
             <Grid container spacing={2}>
               <Grid item xs={12} md={6}>
                 <Link to="/signin">
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    fullWidth
-                  >
+                  <Button variant="contained" color="primary" fullWidth>
                     登录
                   </Button>
                 </Link>
               </Grid>
               <Grid item xs={12} md={6}>
                 <Link to="/signup">
-                  <Button
-                    variant="outlined"
-                    color="primary"
-                    fullWidth
-                  >
+                  <Button variant="outlined" color="primary" fullWidth>
                     注册
                   </Button>
                 </Link>
