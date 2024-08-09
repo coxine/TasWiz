@@ -56,6 +56,7 @@ export const AuthProvider = ({ children }) => {
         console.log("登录成功");
       } else {
         localStorage.removeItem("token");
+        localStorage.removeItem("username");
         console.error("登录失败");
       }
     } catch (error) {
@@ -65,6 +66,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("username");
   };
 
   return (

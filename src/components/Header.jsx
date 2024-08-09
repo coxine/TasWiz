@@ -8,9 +8,17 @@ import { AppRegistration, Dashboard, Home, Login, Logout } from "@mui/icons-mate
 import GuestComponent from "../utils/GuestComponent";
 import { Link } from "@mui/material";
 import ProtectedComponent from "../utils/ProtectedComponent";
+import { useAuth } from "../utils/AuthContext";
 
 
 export default function Header() {
+
+  const { logout } = useAuth();
+  const handleLogout = async () => {
+    await logout();
+    window.location.href = "/";
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -50,10 +58,7 @@ export default function Header() {
               </Tooltip>
             </Link>
             <Tooltip title="登出">
-              <IconButton onClick={() => {
-
-                window.location.href = "/";
-              }}>
+              <IconButton onClick={handleLogout} >
                 <Logout />
               </IconButton>
             </Tooltip>

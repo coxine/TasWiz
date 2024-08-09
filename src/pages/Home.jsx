@@ -12,6 +12,8 @@ import Typography from '@mui/material/Typography';
 import { alpha } from '@mui/material/styles';
 
 export default function Home() {
+
+
   return (
     <Box id="hero" sx={(theme) => ({
       width: '100%',

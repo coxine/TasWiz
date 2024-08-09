@@ -2,16 +2,21 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 import { AuthProvider } from "./utils/AuthContext";
 import DashboardPage from "./pages/Dashboard";
+import Footer from "./components/Footer";
+
 import GuestRoute from "./utils/GuestRoute";
+import Header from "./components/Header";
 import HomePage from "./pages/Home";
 import ProtectedRoute from "./utils/ProtectedRoute";
 import React from "react";
 import SignInPage from "./pages/auth/SignIn";
 import SignUpPage from "./pages/auth/SignUp";
 
+
 const App = () => {
   return (
     <AuthProvider >
+      <Header />
       <Router>
         <Routes>
           <Route
@@ -41,6 +46,7 @@ const App = () => {
           />
         </Routes>
       </Router>
+      <Footer />
     </AuthProvider >
   );
 };

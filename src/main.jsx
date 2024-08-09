@@ -6,8 +6,6 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 import App from "./App.jsx";
 import CssBaseline from "@mui/material/CssBaseline";
-import Footer from "./components/Footer.jsx";
-import Header from "./components/Header.jsx";
 import ReactDOM from "react-dom/client";
 import { green } from "@mui/material/colors";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -32,10 +30,8 @@ const RootComponent = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Header />
       <CssBaseline />
       <App />
-      <Footer />
     </ThemeProvider>
   );
 };
