@@ -1,18 +1,26 @@
 import * as React from "react";
 
-
-
-
-import { AppBar, Box, IconButton, Toolbar, Tooltip, Typography } from "@mui/material";
-import { AppRegistration, Dashboard, Home, Login, Logout } from "@mui/icons-material";
+import {
+  AppBar,
+  Box,
+  IconButton,
+  Toolbar,
+  Tooltip,
+  Typography,
+} from "@mui/material";
+import {
+  AppRegistration,
+  Dashboard,
+  Home,
+  Login,
+  Logout,
+} from "@mui/icons-material";
 import GuestComponent from "../utils/GuestComponent";
 import { Link } from "@mui/material";
 import ProtectedComponent from "../utils/ProtectedComponent";
 import { useAuth } from "../utils/AuthContext";
 
-
 export default function Header() {
-
   const { logout } = useAuth();
   const handleLogout = async () => {
     await logout();
@@ -58,13 +66,13 @@ export default function Header() {
               </Tooltip>
             </Link>
             <Tooltip title="登出">
-              <IconButton onClick={handleLogout} >
+              <IconButton onClick={handleLogout}>
                 <Logout />
               </IconButton>
             </Tooltip>
           </ProtectedComponent>
         </Toolbar>
       </AppBar>
-    </Box >
+    </Box>
   );
 }

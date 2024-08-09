@@ -26,8 +26,6 @@ const RootComponent = () => {
     [prefersDarkMode],
   );
 
-
-
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />

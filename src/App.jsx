@@ -12,30 +12,30 @@ import React from "react";
 import SignInPage from "./pages/auth/SignIn";
 import SignUpPage from "./pages/auth/SignUp";
 
-
 const App = () => {
   return (
-    <AuthProvider >
+    <AuthProvider>
       <Header />
       <Router>
         <Routes>
+          <Route path="/" element={<HomePage />} />
           <Route
-            path="/"
+            path="/signin"
             element={
-              <HomePage />
+              <GuestRoute>
+                <SignInPage />
+              </GuestRoute>
             }
           />
-          <Route path="/signin" element={
-            <GuestRoute>
-              <SignInPage />
-            </GuestRoute>
-          } />
 
-          <Route path="/signup" element={
-            <GuestRoute>
-              <SignUpPage />
-            </GuestRoute>
-          } />
+          <Route
+            path="/signup"
+            element={
+              <GuestRoute>
+                <SignUpPage />
+              </GuestRoute>
+            }
+          />
           <Route
             path="/dashboard"
             element={
@@ -47,7 +47,7 @@ const App = () => {
         </Routes>
       </Router>
       <Footer />
-    </AuthProvider >
+    </AuthProvider>
   );
 };
 

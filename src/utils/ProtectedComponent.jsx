@@ -1,18 +1,16 @@
 import PropTypes from "prop-types";
 
-
 const ProtectedComponent = ({ children }) => {
+  const isTokenValid = localStorage.getItem("token") !== null;
+  if (!isTokenValid) {
+    return null;
+  }
 
-    const isTokenValid = localStorage.getItem("token") !== null;
-    if (!isTokenValid) {
-        return null;
-    }
-
-    return children;
+  return children;
 };
 
 ProtectedComponent.propTypes = {
-    children: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default ProtectedComponent;
