@@ -57,10 +57,12 @@ export const AuthProvider = ({ children }) => {
       } else {
         localStorage.removeItem("token");
         localStorage.removeItem("username");
-        console.error("登录失败");
+        alert("登录失败，请重试");
+        throw new Error("登录失败，请重试");
       }
     } catch (error) {
-      console.error("请求失败", error);
+      alert("登录失败，请重试");
+      throw new Error("登录失败，请重试", error);
     }
   };
 
