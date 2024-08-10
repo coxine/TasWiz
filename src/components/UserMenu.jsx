@@ -1,5 +1,12 @@
 import * as React from "react";
-import { Dashboard, Home, Logout, Password, Person, Tune } from "@mui/icons-material";
+import {
+  Dashboard,
+  Home,
+  Logout,
+  Password,
+  Person,
+  Tune,
+} from "@mui/icons-material";
 import { alpha, styled } from "@mui/material/styles";
 
 import Button from "@mui/material/Button";
@@ -96,24 +103,26 @@ export default function UserMenu() {
 
         <Divider sx={{ my: 0.5 }} />
 
-        {window.location.pathname !== '/' &&
-          (<MenuItem
+        {window.location.pathname !== "/" && (
+          <MenuItem
             onClick={() => {
               window.location.href = "/";
             }}
           >
             <Home />
             首页
-          </MenuItem>)}
-        {window.location.pathname !== '/dashboard' && (<MenuItem
-          onClick={() => {
-            window.location.href = "/dashboard";
-          }}
-        >
-          <Dashboard />
-          看板
-        </MenuItem>)}
-
+          </MenuItem>
+        )}
+        {window.location.pathname !== "/dashboard" && (
+          <MenuItem
+            onClick={() => {
+              window.location.href = "/dashboard";
+            }}
+          >
+            <Dashboard />
+            看板
+          </MenuItem>
+        )}
 
         <Divider sx={{ my: 0.5 }} />
 
@@ -130,6 +139,6 @@ export default function UserMenu() {
           登出
         </MenuItem>
       </StyledMenu>
-    </div >
+    </div>
   );
 }

@@ -1,13 +1,12 @@
 import * as React from "react";
 
-
 import Accordion from "@mui/material/Accordion";
 import AccordionActions from "@mui/material/AccordionActions";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Button from "@mui/material/Button";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import ReactMarkdown from 'react-markdown';
+import ReactMarkdown from "react-markdown";
 
 export default function TaskCard(prop) {
   return (
@@ -21,9 +20,7 @@ export default function TaskCard(prop) {
       </AccordionSummary>
 
       <AccordionDetails>
-        <ReactMarkdown>
-          {prop.taskDetail}
-        </ReactMarkdown>
+        <ReactMarkdown>{prop.taskDetail}</ReactMarkdown>
       </AccordionDetails>
       <AccordionActions>
         <Button

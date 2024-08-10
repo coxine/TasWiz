@@ -119,7 +119,7 @@ export const AuthProvider = ({ children }) => {
             "Content-Type": "application/json",
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
-        }
+        },
       );
 
       if (response.status === 200) {
@@ -140,10 +140,12 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ register, login, logout, isTokenValid, changePassword }}>
+    <AuthContext.Provider
+      value={{ register, login, logout, isTokenValid, changePassword }}
+    >
       {children}
     </AuthContext.Provider>
   );
-}
+};
 
 export const useAuth = () => useContext(AuthContext);

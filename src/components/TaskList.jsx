@@ -27,7 +27,9 @@ export default function TaskList(prop) {
             }
           />
 
-          <TaskCard taskName="任务1" taskDetail="
+          <TaskCard
+            taskName="任务1"
+            taskDetail="
 # 任务细节
 ## 可以用
 
@@ -38,7 +40,8 @@ export default function TaskList(prop) {
 ```python
 print('hell world')
 print('hello world')  
-```" />
+```"
+          />
           <TaskCard taskName="任务2" taskDetail="任务细节" />
         </React.Fragment>
       </Card>
