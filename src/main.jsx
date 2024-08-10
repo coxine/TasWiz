@@ -28,7 +28,7 @@ const RootComponent = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline />
+      <CssBaseline enableColorScheme />
       <App />
     </ThemeProvider>
   );
