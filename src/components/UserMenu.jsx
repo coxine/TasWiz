@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Dashboard, Home, Logout, Password, Person } from "@mui/icons-material";
+import { Dashboard, Home, Logout, Password, Person, Tune } from "@mui/icons-material";
 import { alpha, styled } from "@mui/material/styles";
 
 import Button from "@mui/material/Button";
@@ -76,9 +76,9 @@ export default function UserMenu() {
         variant="contained"
         disableElevation
         onClick={handleClick}
-        endIcon={<Person />}
+        endIcon={<Tune />}
       >
-        用户中心
+        操作中心
       </Button>
       <StyledMenu
         id="demo-customized-menu"
@@ -96,24 +96,27 @@ export default function UserMenu() {
 
         <Divider sx={{ my: 0.5 }} />
 
-        <MenuItem
-          onClick={() => {
-            window.location.href = "/";
-          }}
-        >
-          <Home />
-          首页
-        </MenuItem>
-        <MenuItem
+        {window.location.pathname !== '/' &&
+          (<MenuItem
+            onClick={() => {
+              window.location.href = "/";
+            }}
+          >
+            <Home />
+            首页
+          </MenuItem>)}
+        {window.location.pathname !== '/dashboard' && (<MenuItem
           onClick={() => {
             window.location.href = "/dashboard";
           }}
         >
           <Dashboard />
           看板
-        </MenuItem>
+        </MenuItem>)}
+
 
         <Divider sx={{ my: 0.5 }} />
+
         <MenuItem
           onClick={() => {
             window.location.href = "/change-password";
@@ -127,6 +130,6 @@ export default function UserMenu() {
           登出
         </MenuItem>
       </StyledMenu>
-    </div>
+    </div >
   );
 }

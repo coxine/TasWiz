@@ -1,6 +1,5 @@
 import * as React from "react";
 
-import { Delete, Edit } from "@mui/icons-material";
 
 import Accordion from "@mui/material/Accordion";
 import AccordionActions from "@mui/material/AccordionActions";
@@ -8,6 +7,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Button from "@mui/material/Button";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ReactMarkdown from 'react-markdown';
 
 export default function TaskCard(prop) {
   return (
@@ -19,7 +19,12 @@ export default function TaskCard(prop) {
       >
         {prop.taskName}
       </AccordionSummary>
-      <AccordionDetails>{prop.taskDetail}</AccordionDetails>
+
+      <AccordionDetails>
+        <ReactMarkdown>
+          {prop.taskDetail}
+        </ReactMarkdown>
+      </AccordionDetails>
       <AccordionActions>
         <Button
           id="demo-customized-button"
@@ -28,9 +33,8 @@ export default function TaskCard(prop) {
           aria-expanded={open ? "true" : undefined}
           variant="contained"
           disableElevation
-          endIcon={<Edit />}
         >
-          编辑
+          更多
         </Button>
         <Button
           id="demo-customized-button"
@@ -40,7 +44,6 @@ export default function TaskCard(prop) {
           variant="outlined"
           disableElevation
           color="error"
-          endIcon={<Delete />}
         >
           删除
         </Button>
