@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Dashboard, Home, Logout, Person } from "@mui/icons-material";
+import { Dashboard, Home, Logout, Password, Person } from "@mui/icons-material";
 import { alpha, styled } from "@mui/material/styles";
 
 import Button from "@mui/material/Button";
@@ -114,6 +114,14 @@ export default function UserMenu() {
         </MenuItem>
 
         <Divider sx={{ my: 0.5 }} />
+        <MenuItem
+          onClick={() => {
+            window.location.href = "/change-password";
+          }}
+        >
+          <Password />
+          更改密码
+        </MenuItem>
         <MenuItem onClick={handleLogout}>
           <Logout />
           登出

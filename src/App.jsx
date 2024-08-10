@@ -1,9 +1,9 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 import { AuthProvider } from "./utils/AuthContext";
+import ChangePasswordPage from "./pages/auth/ChangePassword";
 import DashboardPage from "./pages/Dashboard";
 import Footer from "./components/Footer";
-
 import GuestRoute from "./utils/GuestRoute";
 import Header from "./components/Header";
 import HomePage from "./pages/Home";
@@ -41,6 +41,14 @@ const App = () => {
             element={
               <ProtectedRoute>
                 <DashboardPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="change-password"
+            element={
+              <ProtectedRoute>
+                <ChangePasswordPage />
               </ProtectedRoute>
             }
           />
