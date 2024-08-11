@@ -10,8 +10,8 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import PropTypes from "prop-types";
-import ReactMarkdown from 'react-markdown';
-import TaskDialog from './TaskDialog';
+import ReactMarkdown from "react-markdown";
+import TaskDialog from "./TaskDialog";
 
 export default function TaskCard({ task }) {
   const [open, setOpen] = React.useState(false);
@@ -35,7 +35,7 @@ export default function TaskCard({ task }) {
           {task.taskName}
         </AccordionSummary>
         <AccordionDetails>
-          <Box sx={{ maxHeight: '200px', overflow: 'auto' }}>
+          <Box sx={{ maxHeight: "200px", overflow: "auto" }}>
             <ReactMarkdown>{task.taskDetail}</ReactMarkdown>
           </Box>
         </AccordionDetails>
