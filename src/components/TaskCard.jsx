@@ -61,6 +61,7 @@ export default function TaskCard({ task }) {
       <TaskDialog
         open={open}
         handleClose={handleClose}
+        taskID={task.taskID}
         taskName={task.taskName}
         taskDetail={task.taskDetail}
         comments={task.comments}

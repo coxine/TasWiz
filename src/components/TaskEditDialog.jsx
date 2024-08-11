@@ -7,18 +7,21 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import PropTypes from "prop-types";
 import TextField from "@mui/material/TextField";
+import { editTask } from "../utils/Tasks";
 
 export default function TaskEditDialog({
   open,
   handleClose,
+  taskID,
   taskName,
   taskDetail,
 }) {
   const [title, setTitle] = React.useState(taskName);
   const [detail, setDetail] = React.useState(taskDetail);
 
-  const handleSave = () => {
-    console.log("已保存");
+  const handleSave = async () => {
+    await editTask(taskID, title, detail);
+    console.log(`taskID: ${taskID}, title: ${title}, detail: ${detail}`);
   };
 
   const saveAndClose = () => {
@@ -26,10 +29,13 @@ export default function TaskEditDialog({
     handleClose();
   };
 
+
+
   return (
     <Dialog
       open={open}
       onClose={handleClose}
+      taskid={taskID}
       scroll="paper"
       fullScreen
       aria-labelledby="scroll-dialog-title"
@@ -82,6 +88,7 @@ export default function TaskEditDialog({
 TaskEditDialog.propTypes = {
   open: PropTypes.bool.isRequired,
   handleClose: PropTypes.func.isRequired,
+  taskID: PropTypes.number.isRequired,
   taskName: PropTypes.string.isRequired,
   taskDetail: PropTypes.string.isRequired,
 };
