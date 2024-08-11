@@ -96,8 +96,8 @@ export default function UserMenu() {
 
         <Divider sx={{ my: 0.5 }} />
 
-        {window.location.pathname !== '/' &&
-          (<MenuItem
+        {window.location.pathname !== "/" && (
+          <MenuItem
             onClick={() => {
               window.location.href = "/";
             }}
@@ -147,6 +147,6 @@ export default function UserMenu() {
           登出
         </MenuItem>
       </StyledMenu>
-    </div >
+    </div>
   );
 }
