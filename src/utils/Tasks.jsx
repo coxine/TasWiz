@@ -37,7 +37,6 @@ export const getTasks = async () => {
   }
 };
 
-
 export const addComment = async (taskId, comment) => {
   const username = localStorage.getItem("username");
   const token = localStorage.getItem("token");
@@ -57,7 +56,7 @@ export const addComment = async (taskId, comment) => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-      }
+      },
     );
 
     if (response.status === 200) {
@@ -98,7 +97,7 @@ export const editTask = async (taskId, taskName, taskDetail) => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-      }
+      },
     );
 
     if (response.status === 200) {

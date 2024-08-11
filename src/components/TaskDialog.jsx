@@ -75,7 +75,12 @@ export default function TaskDialog({
           </Box>
           <Divider sx={{ my: 1 }} />
           <Typography variant="h6">评论</Typography>
-          <Box sx={{ my: 2 }} component="form" onSubmit={handleAddComment} noValidate>
+          <Box
+            sx={{ my: 2 }}
+            component="form"
+            onSubmit={handleAddComment}
+            noValidate
+          >
             <Grid container spacing={2}>
               <Grid item xs={11}>
                 <TextField
@@ -107,7 +112,12 @@ export default function TaskDialog({
                   <Typography variant="body1" display="inline">
                     {comment.content}
                   </Typography>
-                  <Typography variant="caption" color="text.secondary" display="inline" sx={{ ml: 1 }}>
+                  <Typography
+                    variant="caption"
+                    color="text.secondary"
+                    display="inline"
+                    sx={{ ml: 1 }}
+                  >
                     {new Date(comment.timestamp).toLocaleString()}
                   </Typography>
                 </Box>

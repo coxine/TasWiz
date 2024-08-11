@@ -29,8 +29,6 @@ export default function TaskEditDialog({
     handleClose();
   };
 
-
-
   return (
     <Dialog
       open={open}
