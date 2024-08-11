@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Dashboard, Home, Logout, Password, Person, Tune } from "@mui/icons-material";
+import { AddCircle, Dashboard, FileDownload, Home, Logout, Password, Person, Tune } from "@mui/icons-material";
 import { alpha, styled } from "@mui/material/styles";
 
 import Button from "@mui/material/Button";
@@ -105,6 +105,7 @@ export default function UserMenu() {
             <Home />
             首页
           </MenuItem>)}
+
         {window.location.pathname !== '/dashboard' && (<MenuItem
           onClick={() => {
             window.location.href = "/dashboard";
@@ -113,6 +114,22 @@ export default function UserMenu() {
           <Dashboard />
           看板
         </MenuItem>)}
+
+        {
+          window.location.pathname === '/dashboard' && (
+            <div>
+              <Divider sx={{ my: 0.5 }} />
+              <MenuItem>
+                <AddCircle />
+                新增项目
+              </MenuItem>
+              <MenuItem>
+                <FileDownload />
+                导出所有项目
+              </MenuItem>
+            </div>
+          )
+        }
 
 
         <Divider sx={{ my: 0.5 }} />

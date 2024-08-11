@@ -1,5 +1,6 @@
 import * as React from "react";
 
+import { Delete, MoreVert } from "@mui/icons-material";
 
 import Accordion from "@mui/material/Accordion";
 import AccordionActions from "@mui/material/AccordionActions";
@@ -7,21 +8,17 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import PropTypes from "prop-types";
 import ReactMarkdown from 'react-markdown';
+import TaskDialog from './TaskDialog';
 
-export default function TaskCard(prop) {
+export default function TaskCard({ task }) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
   };
-
 
   const handleClose = () => {
     setOpen(false);
@@ -32,71 +29,46 @@ export default function TaskCard(prop) {
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel3-content"
-          id="panel3-header"
+          aria-controls={`panel-${task.taskID}-content`}
+          id={`panel-${task.taskID}-header`}
         >
-          {prop.taskName}
+          {task.taskName}
         </AccordionSummary>
-
         <AccordionDetails>
-          <Box sx={{
-            maxHeight: '200px',
-            overflow: 'auto',
-          }}>
-            <ReactMarkdown>
-              {prop.taskDetail}
-            </ReactMarkdown>
+          <Box sx={{ maxHeight: '200px', overflow: 'auto' }}>
+            <ReactMarkdown>{task.taskDetail}</ReactMarkdown>
           </Box>
         </AccordionDetails>
         <AccordionActions>
           <Button
-            id="demo-customized-button"
-            aria-controls={open ? "demo-customized-menu" : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? "true" : undefined}
             variant="contained"
             disableElevation
             onClick={handleClickOpen}
+            endIcon={<MoreVert />}
           >
             更多
           </Button>
           <Button
-            id="demo-customized-button"
-            aria-controls={open ? "demo-customized-menu" : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? "true" : undefined}
             variant="outlined"
             disableElevation
             color="error"
+            endIcon={<Delete />}
           >
             删除
           </Button>
         </AccordionActions>
       </Accordion>
-
-      <Dialog
+      <TaskDialog
         open={open}
-        onClose={handleClose}
-        scroll="paper"
-        fullScreen="true"
-        aria-labelledby="scroll-dialog-title"
-        aria-describedby="scroll-dialog-description"
-      >
-        <DialogTitle id="scroll-dialog-title">{prop.taskName}</DialogTitle>
-        <DialogContent dividers={scroll === 'paper'}>
-          <DialogContentText
-            id="scroll-dialog-description"
-            tabIndex={-1}
-          >
-            <ReactMarkdown>
-              {prop.taskDetail}
-            </ReactMarkdown>
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} variant="outlined">关闭</Button>
-        </DialogActions>
-      </Dialog>
+        handleClose={handleClose}
+        taskName={task.taskName}
+        taskDetail={task.taskDetail}
+        comments={task.comments}
+      />
     </>
   );
 }
+
+TaskCard.propTypes = {
+  task: PropTypes.object.isRequired,
+};
