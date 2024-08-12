@@ -35,7 +35,7 @@ export default function Dashboard() {
       const updatedProjects = prevProjects.map((project) => ({
         ...project,
         tasks: project.tasks.map((task) =>
-          task.taskID === updatedTask.taskID ? updatedTask : task
+          task.taskID === updatedTask.taskID ? updatedTask : task,
         ),
       }));
 
@@ -43,8 +43,6 @@ export default function Dashboard() {
       return updatedProjects;
     });
   };
-
-
 
   if (loading) {
     return (

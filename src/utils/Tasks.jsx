@@ -126,19 +126,16 @@ export const deleteTask = async (taskId) => {
   const token = localStorage.getItem("token");
 
   try {
-    const response = await axios.delete(
-      `${config.backendUrl}/api/task`,
-      {
-        data: {
-          taskId: taskId,
-          username: username,
-        },
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const response = await axios.delete(`${config.backendUrl}/api/task`, {
+      data: {
+        taskId: taskId,
+        username: username,
+      },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
     if (response.status === 200) {
       console.log("任务删除成功", response.data);
@@ -166,19 +163,16 @@ export const queryTask = async (taskId) => {
   const token = localStorage.getItem("token");
 
   try {
-    const response = await axios.get(
-      `${config.backendUrl}/api/task`,
-      {
-        params: {
-          taskId: taskId,
-          username: username,
-        },
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const response = await axios.get(`${config.backendUrl}/api/task`, {
+      params: {
+        taskId: taskId,
+        username: username,
+      },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
     if (response.status === 200) {
       console.log("任务查询成功", response.data);

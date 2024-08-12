@@ -22,7 +22,12 @@ export default function TaskEditDialog({
   const [detail, setDetail] = React.useState(taskDetail);
 
   const handleSave = async () => {
-    const updatedTask = { taskID, taskName: title, taskDetail: detail, comments: comments };
+    const updatedTask = {
+      taskID,
+      taskName: title,
+      taskDetail: detail,
+      comments: comments,
+    };
     await editTask(taskID, title, detail);
     onTaskEdit(updatedTask);
   };

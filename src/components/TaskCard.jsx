@@ -41,7 +41,13 @@ export default function TaskCard({ task, onTaskEdit }) {
           {task.taskName}
         </AccordionSummary>
         <AccordionDetails>
-          <Box sx={{ maxHeight: "200px", overflow: "auto", wordWrap: "break-word" }}>
+          <Box
+            sx={{
+              maxHeight: "200px",
+              overflow: "auto",
+              wordWrap: "break-word",
+            }}
+          >
             <ReactMarkdown>{task.taskDetail}</ReactMarkdown>
           </Box>
         </AccordionDetails>

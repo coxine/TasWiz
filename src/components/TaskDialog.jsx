@@ -15,12 +15,7 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { addComment } from "../utils/Tasks";
 
-export default function TaskDialog({
-  open,
-  handleClose,
-  task,
-  onTaskEdit,
-}) {
+export default function TaskDialog({ open, handleClose, task, onTaskEdit }) {
   const [editOpen, setEditOpen] = React.useState(false);
   const [commentList, setCommentList] = React.useState(task.comments);
 
@@ -68,7 +63,13 @@ export default function TaskDialog({
         <DialogContent dividers>
           <Typography variant="h6">任务详情</Typography>
 
-          <Box sx={{ maxHeight: "300px", overflow: "auto", wordWrap: "break-word" }}>
+          <Box
+            sx={{
+              maxHeight: "300px",
+              overflow: "auto",
+              wordWrap: "break-word",
+            }}
+          >
             <ReactMarkdown>{task.taskDetail}</ReactMarkdown>
           </Box>
           <Divider sx={{ my: 1 }} />
@@ -107,7 +108,7 @@ export default function TaskDialog({
             {commentList.length > 0 ? (
               commentList.map((comment, index) => (
                 <Box key={index} sx={{ my: 0.5, wordWrap: "break-word" }}>
-                  <Typography variant="body1" display="inline" >
+                  <Typography variant="body1" display="inline">
                     {comment.content}
                   </Typography>
                   <Typography
@@ -142,7 +143,7 @@ export default function TaskDialog({
             关闭
           </Button>
         </DialogActions>
-      </Dialog >
+      </Dialog>
       <TaskEditDialog
         comments={commentList}
         open={editOpen}
