@@ -74,7 +74,9 @@ export default function Dashboard() {
             pb: { xs: 8, sm: 12 },
           }}
         >
-          <Typography variant="h4">获取任务失败！请确认您的网络或登录状态。</Typography>
+          <Typography variant="h4">
+            获取任务失败！请确认您的网络或登录状态。
+          </Typography>
         </Container>
       </Box>
     );

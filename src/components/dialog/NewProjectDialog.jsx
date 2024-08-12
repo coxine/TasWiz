@@ -1,32 +1,23 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
-import PropTypes from 'prop-types';
-import TextField from '@mui/material/TextField';
-import { addProject } from '../../utils/Project';
+import * as React from "react";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
+import PropTypes from "prop-types";
+import TextField from "@mui/material/TextField";
+import { addProject } from "../../utils/Project";
 
-export default function NewProjectDialog({
-  open,
-  handleClose,
-}) {
-  const [projectName, setProjectName] = React.useState('');
+export default function NewProjectDialog({ open, handleClose }) {
+  const [projectName, setProjectName] = React.useState("");
 
   const handleSubmit = async () => {
     await addProject(projectName);
     window.location.reload();
-  }
-
+  };
 
   return (
-    <Dialog
-      open={open}
-      onClose={handleClose}
-      fullWidth
-      maxWidth="sm"
-    >
+    <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
       <DialogTitle>新建项目</DialogTitle>
       <DialogContent>
         <TextField

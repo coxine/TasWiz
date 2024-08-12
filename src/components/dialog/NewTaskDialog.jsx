@@ -1,32 +1,24 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
-import PropTypes from 'prop-types';
-import TextField from '@mui/material/TextField';
-import { addTask } from '../../utils/Task';
+import * as React from "react";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
+import PropTypes from "prop-types";
+import TextField from "@mui/material/TextField";
+import { addTask } from "../../utils/Task";
 
-export default function NewTaskDialog({
-  projectID,
-  open,
-  handleClose,
-}) {
-  const [taskName, setTaskName] = React.useState('');
-  const [taskDetail, setTaskDetail] = React.useState('');
+export default function NewTaskDialog({ projectID, open, handleClose }) {
+  const [taskName, setTaskName] = React.useState("");
+  const [taskDetail, setTaskDetail] = React.useState("");
 
   const handleSubmit = async () => {
     await addTask(taskName, taskDetail, projectID);
     window.location.reload();
-  }
-
+  };
 
   return (
-    <Dialog
-      open={open}
-      onClose={handleClose}
-    >
+    <Dialog open={open} onClose={handleClose}>
       <DialogTitle>新建项目</DialogTitle>
       <DialogContent>
         <TextField

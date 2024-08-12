@@ -21,18 +21,17 @@ export default function TaskCard({ task, onTaskEdit }) {
     toggleTaskDialog(true);
   };
 
-
   const closeTaskDialog = () => {
     toggleTaskDialog(false);
   };
 
   const showConfirmDialog = () => {
     toggleConfirmDialog(true);
-  }
+  };
 
   const closeConfirmDialog = () => {
     toggleConfirmDialog(false);
-  }
+  };
 
   const handleDeleteTask = async () => {
     await deleteTask(task.taskID);

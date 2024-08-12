@@ -1,17 +1,14 @@
-import * as React from 'react';
+import * as React from "react";
 
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import PropTypes from 'prop-types';
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import PropTypes from "prop-types";
 
-export default function ConfirmDialog(
-  { open, handleClose, handleDelete }
-) {
-
+export default function ConfirmDialog({ open, handleClose, handleDelete }) {
   return (
     <Dialog
       open={open}
@@ -21,25 +18,17 @@ export default function ConfirmDialog(
       fullWidth
       maxWidth="sm"
     >
-      <DialogTitle id="Confirm-dialog-title">
-        {"您确定要删除吗？"}
-      </DialogTitle>
+      <DialogTitle id="Confirm-dialog-title">{"您确定要删除吗？"}</DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
           请三思！删除后您的任务或项目将<b>无法恢复</b>。
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button
-          onClick={handleClose}
-          autoFocus
-        >
+        <Button onClick={handleClose} autoFocus>
           取消
         </Button>
-        <Button
-          color="error"
-          onClick={handleDelete}
-        >
+        <Button color="error" onClick={handleDelete}>
           删除
         </Button>
       </DialogActions>

@@ -95,10 +95,10 @@ export default function UserMenu() {
   const [newProjectDialogOpen, setNewProjectDialogOpen] = React.useState(false);
   const handleNewProjectDialogOpen = () => {
     setNewProjectDialogOpen(true);
-  }
+  };
   const handleNewProjectDialogClose = () => {
     setNewProjectDialogOpen(false);
-  }
+  };
 
   return (
     <div>
@@ -155,21 +155,16 @@ export default function UserMenu() {
         {window.location.pathname === "/dashboard" && (
           <div>
             <Divider sx={{ my: 0.5 }} />
-            <MenuItem
-              onClick={handleNewProjectDialogOpen}
-            >
+            <MenuItem onClick={handleNewProjectDialogOpen}>
               <AddCircle />
               新增项目
             </MenuItem>
-            <MenuItem
-              onClick={handleDownloadProjects}
-            >
+            <MenuItem onClick={handleDownloadProjects}>
               <FileDownload />
               导出所有项目
             </MenuItem>
           </div>
-        )
-        }
+        )}
 
         <Divider sx={{ my: 0.5 }} />
 
@@ -185,11 +180,11 @@ export default function UserMenu() {
           <Logout />
           登出
         </MenuItem>
-      </StyledMenu >
+      </StyledMenu>
       <NewProjectDialog
         open={newProjectDialogOpen}
         handleClose={handleNewProjectDialogClose}
       />
-    </div >
+    </div>
   );
 }

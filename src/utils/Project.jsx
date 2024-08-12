@@ -79,15 +79,19 @@ export const addProject = async (projectName) => {
   const token = localStorage.getItem("token");
 
   try {
-    const response = await axios.post(`${config.backendUrl}/api/project`, {
-      username: username,
-      projectName: projectName,
-    }, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+    const response = await axios.post(
+      `${config.backendUrl}/api/project`,
+      {
+        username: username,
+        projectName: projectName,
       },
-    });
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    );
 
     if (response.status === 201) {
       console.log("项目创建成功", response.data);
@@ -109,4 +113,3 @@ export const addProject = async (projectName) => {
     }
   }
 };
-

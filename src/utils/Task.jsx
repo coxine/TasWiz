@@ -164,17 +164,21 @@ export const addTask = async (taskName, taskDetail, projectId) => {
   const token = localStorage.getItem("token");
 
   try {
-    const response = await axios.post(`${config.backendUrl}/api/task`, {
-      taskName: taskName,
-      taskDetail: taskDetail,
-      projectId: projectId,
-      username: username,
-    }, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+    const response = await axios.post(
+      `${config.backendUrl}/api/task`,
+      {
+        taskName: taskName,
+        taskDetail: taskDetail,
+        projectId: projectId,
+        username: username,
       },
-    });
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    );
 
     if (response.status === 201) {
       console.log("任务创建成功", response.data);

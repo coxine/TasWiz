@@ -11,31 +11,29 @@ import TaskCard from "./TaskCard";
 import { deleteProject } from "../utils/Project";
 
 export default function ProjectCard({ project, onTaskEdit }) {
-
   const [confirmDialogOpen, toggleConfirmDialog] = React.useState(false);
   const [newTaskDialogOpen, toggleNewTaskDialog] = React.useState(false);
 
   const showConfirmDialog = () => {
     toggleConfirmDialog(true);
-  }
+  };
 
   const closeConfirmDialog = () => {
     toggleConfirmDialog(false);
-  }
+  };
 
   const showNewTaskDialog = () => {
     toggleNewTaskDialog(true);
-  }
+  };
 
   const closeNewTaskDialog = () => {
     toggleNewTaskDialog(false);
-  }
-
+  };
 
   const handleDeleteProject = async () => {
     await deleteProject(project.projectID);
     window.location.reload();
-  }
+  };
 
   return (
     <>
@@ -48,7 +46,11 @@ export default function ProjectCard({ project, onTaskEdit }) {
                 <IconButton aria-label="add" onClick={showNewTaskDialog}>
                   <Add />
                 </IconButton>
-                <IconButton aria-label="delete" color="error" onClick={showConfirmDialog}>
+                <IconButton
+                  aria-label="delete"
+                  color="error"
+                  onClick={showConfirmDialog}
+                >
                   <Delete />
                 </IconButton>
               </>
