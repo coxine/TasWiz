@@ -5,6 +5,7 @@ import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import ConfirmDialog from "./dialog/ConfirmDialog";
 import IconButton from "@mui/material/IconButton";
+import NewTaskDialog from "./dialog/NewTaskDialog";
 import PropTypes from "prop-types";
 import TaskCard from "./TaskCard";
 import { deleteProject } from "../utils/Project";
@@ -12,6 +13,7 @@ import { deleteProject } from "../utils/Project";
 export default function ProjectCard({ project, onTaskEdit }) {
 
   const [confirmDialogOpen, toggleConfirmDialog] = React.useState(false);
+  const [newTaskDialogOpen, toggleNewTaskDialog] = React.useState(false);
 
   const showConfirmDialog = () => {
     toggleConfirmDialog(true);
@@ -19,6 +21,14 @@ export default function ProjectCard({ project, onTaskEdit }) {
 
   const closeConfirmDialog = () => {
     toggleConfirmDialog(false);
+  }
+
+  const showNewTaskDialog = () => {
+    toggleNewTaskDialog(true);
+  }
+
+  const closeNewTaskDialog = () => {
+    toggleNewTaskDialog(false);
   }
 
 
@@ -35,7 +45,7 @@ export default function ProjectCard({ project, onTaskEdit }) {
             title={project.projectName}
             action={
               <>
-                <IconButton aria-label="add">
+                <IconButton aria-label="add" onClick={showNewTaskDialog}>
                   <Add />
                 </IconButton>
                 <IconButton aria-label="delete" color="error" onClick={showConfirmDialog}>
@@ -53,6 +63,11 @@ export default function ProjectCard({ project, onTaskEdit }) {
         open={confirmDialogOpen}
         handleClose={closeConfirmDialog}
         handleDelete={handleDeleteProject}
+      />
+      <NewTaskDialog
+        projectID={project.projectID}
+        open={newTaskDialogOpen}
+        handleClose={closeNewTaskDialog}
       />
     </>
   );

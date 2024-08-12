@@ -18,19 +18,21 @@ export default function ConfirmDialog(
       onClose={handleClose}
       aria-labelledby="Confirm-dialog-title"
       aria-describedby="Confirm-dialog-description"
+      fullWidth
+      maxWidth="sm"
     >
       <DialogTitle id="Confirm-dialog-title">
         {"您确定要删除吗？"}
       </DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
-          请三思！您删除的操作是不可逆的。删除后您的任务或项目将<b>无法恢复</b>。
+          请三思！删除后您的任务或项目将<b>无法恢复</b>。
         </DialogContentText>
       </DialogContent>
       <DialogActions>
         <Button
           onClick={handleClose}
-          autofocus
+          autoFocus
         >
           取消
         </Button>

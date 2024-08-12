@@ -158,3 +158,41 @@ export const queryTask = async (taskId) => {
     }
   }
 };
+
+export const addTask = async (taskName, taskDetail, projectId) => {
+  const username = localStorage.getItem("username");
+  const token = localStorage.getItem("token");
+
+  try {
+    const response = await axios.post(`${config.backendUrl}/api/task`, {
+      taskName: taskName,
+      taskDetail: taskDetail,
+      projectId: projectId,
+      username: username,
+    }, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (response.status === 201) {
+      console.log("任务创建成功", response.data);
+      return response.data;
+    } else {
+      alert("任务创建失败，请重试");
+      throw new Error("任务创建失败，请重试");
+    }
+  } catch (error) {
+    if (error.response && error.response.status === 401) {
+      alert("未授权");
+      throw new Error("未授权");
+    } else if (error.response && error.response.status === 400) {
+      alert("请求数据无效");
+      throw new Error("请求数据无效");
+    } else {
+      alert("任务创建失败，请重试");
+      throw new Error("任务创建失败，请重试");
+    }
+  }
+};
