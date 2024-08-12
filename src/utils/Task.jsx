@@ -76,8 +76,8 @@ export const editTask = async (taskId, taskName, taskDetail) => {
       alert("未授权");
       throw new Error("未授权");
     } else if (error.response && error.response.status === 404) {
-      alert("任务不存在");
-      throw new Error("任务不存在");
+      alert("保存失败，任务不存在");
+      throw new Error("保存失败，任务不存在");
     } else {
       alert("任务编辑失败，请重试");
       throw new Error("任务编辑失败，请重试");

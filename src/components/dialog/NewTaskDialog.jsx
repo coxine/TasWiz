@@ -44,7 +44,7 @@ export default function NewTaskDialog({
         <TextField
           margin="dense"
           id="detail"
-          label="任务详情"
+          label="任务详情（支持Markdown）"
           type="text"
           fullWidth
           required
