@@ -13,7 +13,7 @@ import ReactMarkdown from "react-markdown";
 import TaskEditDialog from "./TaskEditDialog";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import { addComment } from "../utils/Tasks";
+import { addComment } from "../../utils/Task";
 
 export default function TaskDialog({ open, handleClose, task, onTaskEdit }) {
   const [editOpen, setEditOpen] = React.useState(false);
@@ -88,6 +88,7 @@ export default function TaskDialog({ open, handleClose, task, onTaskEdit }) {
                   type="text"
                   name="comment"
                   fullWidth
+                  required
                   variant="outlined"
                 />
               </Grid>

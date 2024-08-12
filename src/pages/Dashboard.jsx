@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import ProjectList from "../components/ProjectList";
 import Typography from "@mui/material/Typography";
-import { getProject } from "../utils/Tasks";
+import { getProjects } from "../utils/Project";
 
 export default function Dashboard() {
   const [projects, setProjects] = useState([]);
@@ -14,7 +14,7 @@ export default function Dashboard() {
   useEffect(() => {
     async function fetchProjects() {
       try {
-        const result = await getProject();
+        const result = await getProjects();
         setProjects(result.data);
         setLoading(false);
       } catch (error) {
@@ -56,7 +56,7 @@ export default function Dashboard() {
             pb: { xs: 8, sm: 12 },
           }}
         >
-          <Typography variant="h4">Loading...</Typography>
+          <Typography variant="h4">加载中……</Typography>
         </Container>
       </Box>
     );
@@ -74,7 +74,7 @@ export default function Dashboard() {
             pb: { xs: 8, sm: 12 },
           }}
         >
-          <Typography variant="h4">Error fetching tasks!</Typography>
+          <Typography variant="h4">获取任务失败！请确认您的网络或登录状态。</Typography>
         </Container>
       </Box>
     );

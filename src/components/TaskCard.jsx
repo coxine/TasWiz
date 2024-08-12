@@ -6,24 +6,35 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import ConfirmDialog from "./dialog/ConfirmDialog";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import PropTypes from "prop-types";
 import ReactMarkdown from "react-markdown";
-import TaskDialog from "./TaskDialog";
-import { deleteTask } from "../utils/Tasks";
+import TaskDialog from "./dialog/TaskDialog";
+import { deleteTask } from "../utils/Task";
 
 export default function TaskCard({ task, onTaskEdit }) {
-  const [open, setOpen] = React.useState(false);
+  const [taskDialogOpen, toggleTaskDialog] = React.useState(false);
+  const [confirmDialogOpen, toggleConfirmDialog] = React.useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
+  const showTaskDialog = () => {
+    toggleTaskDialog(true);
   };
 
-  const handleClose = () => {
-    setOpen(false);
+
+  const closeTaskDialog = () => {
+    toggleTaskDialog(false);
   };
 
-  const handleDelete = async () => {
+  const showConfirmDialog = () => {
+    toggleConfirmDialog(true);
+  }
+
+  const closeConfirmDialog = () => {
+    toggleConfirmDialog(false);
+  }
+
+  const handleDeleteTask = async () => {
     await deleteTask(task.taskID);
     console.log(`taskID: ${task.taskID}`);
     alert("任务删除成功");
@@ -56,7 +67,7 @@ export default function TaskCard({ task, onTaskEdit }) {
           <Button
             variant="contained"
             disableElevation
-            onClick={handleClickOpen}
+            onClick={showTaskDialog}
             endIcon={<MoreVert />}
           >
             更多
@@ -65,7 +76,7 @@ export default function TaskCard({ task, onTaskEdit }) {
             variant="outlined"
             disableElevation
             color="error"
-            onClick={handleDelete}
+            onClick={showConfirmDialog}
             endIcon={<Delete />}
           >
             删除
@@ -73,10 +84,15 @@ export default function TaskCard({ task, onTaskEdit }) {
         </AccordionActions>
       </Accordion>
       <TaskDialog
-        open={open}
-        handleClose={handleClose}
+        open={taskDialogOpen}
+        handleClose={closeTaskDialog}
         task={task}
         onTaskEdit={onTaskEdit}
+      />
+      <ConfirmDialog
+        open={confirmDialogOpen}
+        handleClose={closeConfirmDialog}
+        handleDelete={handleDeleteTask}
       />
     </>
   );

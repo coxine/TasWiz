@@ -15,6 +15,8 @@ import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import NewProjectDialog from "./dialog/NewProjectDialog";
+import { getProjects } from "../utils/Project";
 import { useAuth } from "../utils/AuthContext";
 
 const StyledMenu = styled((props) => (
@@ -62,11 +64,11 @@ const StyledMenu = styled((props) => (
 
 export default function UserMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
+  const menuOpen = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = () => {
+  const handleMenuClose = () => {
     setAnchorEl(null);
   };
   const { logout } = useAuth();
@@ -74,14 +76,37 @@ export default function UserMenu() {
     await logout();
     window.location.href = "/";
   };
+  const handleDownloadProjects = async () => {
+    const result = await getProjects();
+    const username = localStorage.getItem("username");
+    const date = new Date().toLocaleDateString();
+    const time = new Date().toLocaleTimeString();
+    const data = JSON.stringify(result.data, null, 2);
+    const blob = new Blob([data], { type: "text/json" });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${username}-${date}-${time}.json`;
+    a.click();
+    window.URL.revokeObjectURL(url);
+  };
+
+  // Add a new project
+  const [newProjectDialogOpen, setNewProjectDialogOpen] = React.useState(false);
+  const handleNewProjectDialogOpen = () => {
+    setNewProjectDialogOpen(true);
+  }
+  const handleNewProjectDialogClose = () => {
+    setNewProjectDialogOpen(false);
+  }
 
   return (
     <div>
       <Button
         id="demo-customized-button"
-        aria-controls={open ? "demo-customized-menu" : undefined}
+        aria-controls={menuOpen ? "demo-customized-menu" : undefined}
         aria-haspopup="true"
-        aria-expanded={open ? "true" : undefined}
+        aria-expanded={menuOpen ? "true" : undefined}
         variant="contained"
         disableElevation
         onClick={handleClick}
@@ -95,8 +120,8 @@ export default function UserMenu() {
           "aria-labelledby": "demo-customized-button",
         }}
         anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
+        open={menuOpen}
+        onClose={handleMenuClose}
       >
         <MenuItem disableRipple>
           <Person />
@@ -130,16 +155,21 @@ export default function UserMenu() {
         {window.location.pathname === "/dashboard" && (
           <div>
             <Divider sx={{ my: 0.5 }} />
-            <MenuItem>
+            <MenuItem
+              onClick={handleNewProjectDialogOpen}
+            >
               <AddCircle />
               新增项目
             </MenuItem>
-            <MenuItem>
+            <MenuItem
+              onClick={handleDownloadProjects}
+            >
               <FileDownload />
               导出所有项目
             </MenuItem>
           </div>
-        )}
+        )
+        }
 
         <Divider sx={{ my: 0.5 }} />
 
@@ -155,7 +185,11 @@ export default function UserMenu() {
           <Logout />
           登出
         </MenuItem>
-      </StyledMenu>
-    </div>
+      </StyledMenu >
+      <NewProjectDialog
+        open={newProjectDialogOpen}
+        handleClose={handleNewProjectDialogClose}
+      />
+    </div >
   );
 }

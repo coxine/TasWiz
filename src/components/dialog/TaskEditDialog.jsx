@@ -7,7 +7,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import PropTypes from "prop-types";
 import TextField from "@mui/material/TextField";
-import { editTask } from "../utils/Tasks";
+import { editTask } from "../../utils/Task";
 
 export default function TaskEditDialog({
   comments,
@@ -56,6 +56,7 @@ export default function TaskEditDialog({
           label="任务标题"
           type="text"
           fullWidth
+          required
           variant="outlined"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
@@ -66,6 +67,7 @@ export default function TaskEditDialog({
           label="任务详情"
           type="text"
           fullWidth
+          required
           variant="outlined"
           multiline
           minRows={8}
