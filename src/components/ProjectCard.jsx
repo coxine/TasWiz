@@ -7,7 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import PropTypes from "prop-types";
 import TaskCard from "./TaskCard";
 
-export default function ProjectCard({ project }) {
+export default function ProjectCard({ project, onTaskEdit }) {
   return (
     <Box sx={{ minWidth: 275 }}>
       <Card variant="outlined">
@@ -25,7 +25,7 @@ export default function ProjectCard({ project }) {
           }
         />
         {project.tasks.map((task) => (
-          <TaskCard key={task.taskID} task={task} />
+          <TaskCard key={task.taskID} task={task} onTaskEdit={onTaskEdit} />
         ))}
       </Card>
     </Box>
@@ -34,4 +34,5 @@ export default function ProjectCard({ project }) {
 
 ProjectCard.propTypes = {
   project: PropTypes.object.isRequired,
+  onTaskEdit: PropTypes.func.isRequired,
 };

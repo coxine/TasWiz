@@ -4,18 +4,18 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import ProjectList from "../components/ProjectList";
 import Typography from "@mui/material/Typography";
-import { getTasks } from "../utils/Tasks";
+import { getProject } from "../utils/Tasks";
 
 export default function Dashboard() {
-  const [tasks, setTasks] = useState(null);
+  const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    async function fetchTasks() {
+    async function fetchProjects() {
       try {
-        const result = await getTasks();
-        setTasks(result);
+        const result = await getProject();
+        setProjects(result.data);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching tasks:", error);
@@ -24,8 +24,27 @@ export default function Dashboard() {
       }
     }
 
-    fetchTasks();
+    fetchProjects();
   }, []);
+
+  const handleTaskEdit = (updatedTask) => {
+    setProjects((prevProjects) => {
+      console.log("updatedTask", updatedTask);
+      console.log("projects", prevProjects);
+
+      const updatedProjects = prevProjects.map((project) => ({
+        ...project,
+        tasks: project.tasks.map((task) =>
+          task.taskID === updatedTask.taskID ? updatedTask : task
+        ),
+      }));
+
+      console.log("updatedProjects", updatedProjects);
+      return updatedProjects;
+    });
+  };
+
+
 
   if (loading) {
     return (
@@ -63,7 +82,7 @@ export default function Dashboard() {
     );
   }
 
-  if (!tasks || tasks.length === 0) {
+  if (!projects || projects.length === 0) {
     return (
       <Box id="hero">
         <Container
@@ -92,7 +111,7 @@ export default function Dashboard() {
           pb: { xs: 8, sm: 12 },
         }}
       >
-        <ProjectList data={tasks.data} />
+        <ProjectList data={projects} onTaskEdit={handleTaskEdit} />
       </Container>
     </Box>
   );

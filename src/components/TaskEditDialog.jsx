@@ -10,18 +10,21 @@ import TextField from "@mui/material/TextField";
 import { editTask } from "../utils/Tasks";
 
 export default function TaskEditDialog({
+  comments,
   open,
   handleClose,
   taskID,
   taskName,
   taskDetail,
+  onTaskEdit,
 }) {
   const [title, setTitle] = React.useState(taskName);
   const [detail, setDetail] = React.useState(taskDetail);
 
   const handleSave = async () => {
+    const updatedTask = { taskID, taskName: title, taskDetail: detail, comments: comments };
     await editTask(taskID, title, detail);
-    console.log(`taskID: ${taskID}, title: ${title}, detail: ${detail}`);
+    onTaskEdit(updatedTask);
   };
 
   const saveAndClose = () => {
@@ -40,7 +43,7 @@ export default function TaskEditDialog({
       aria-describedby="scroll-dialog-description"
     >
       <DialogTitle id="scroll-dialog-title">编辑任务</DialogTitle>
-      <DialogContent dividers={scroll === "paper"}>
+      <DialogContent dividers>
         <TextField
           autoFocus
           margin="dense"
@@ -84,9 +87,11 @@ export default function TaskEditDialog({
 }
 
 TaskEditDialog.propTypes = {
+  comments: PropTypes.array.isRequired,
   open: PropTypes.bool.isRequired,
   handleClose: PropTypes.func.isRequired,
   taskID: PropTypes.number.isRequired,
   taskName: PropTypes.string.isRequired,
   taskDetail: PropTypes.string.isRequired,
+  onTaskEdit: PropTypes.func.isRequired,
 };

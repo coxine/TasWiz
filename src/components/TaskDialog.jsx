@@ -18,13 +18,11 @@ import { addComment } from "../utils/Tasks";
 export default function TaskDialog({
   open,
   handleClose,
-  taskID,
-  taskName,
-  taskDetail,
-  comments,
+  task,
+  onTaskEdit,
 }) {
   const [editOpen, setEditOpen] = React.useState(false);
-  const [commentList, setCommentList] = React.useState(comments);
+  const [commentList, setCommentList] = React.useState(task.comments);
 
   const handleEditOpen = () => {
     setEditOpen(true);
@@ -40,8 +38,8 @@ export default function TaskDialog({
     const newCommentContent = data.get("comment");
 
     try {
-      await addComment(taskID, newCommentContent);
-      console.log(`taskID: ${taskID}, comment: ${newCommentContent}`);
+      await addComment(task.taskID, newCommentContent);
+      console.log(`taskID: ${task.taskID}, comment: ${newCommentContent}`);
       event.target.comment.value = "";
 
       const newComment = {
@@ -60,18 +58,18 @@ export default function TaskDialog({
       <Dialog
         open={open}
         onClose={handleClose}
-        key={taskID}
+        key={task.taskID}
         scroll="paper"
         fullScreen
         aria-labelledby="scroll-dialog-title"
         aria-describedby="scroll-dialog-description"
       >
-        <DialogTitle id="scroll-dialog-title">{taskName}</DialogTitle>
+        <DialogTitle id="scroll-dialog-title">{task.taskName}</DialogTitle>
         <DialogContent dividers>
           <Typography variant="h6">任务详情</Typography>
 
-          <Box sx={{ maxHeight: "300px", overflow: "auto" }}>
-            <ReactMarkdown>{taskDetail}</ReactMarkdown>
+          <Box sx={{ maxHeight: "300px", overflow: "auto", wordWrap: "break-word" }}>
+            <ReactMarkdown>{task.taskDetail}</ReactMarkdown>
           </Box>
           <Divider sx={{ my: 1 }} />
           <Typography variant="h6">评论</Typography>
@@ -105,11 +103,11 @@ export default function TaskDialog({
               </Grid>
             </Grid>
           </Box>
-          <Box id={`comment-${taskID}`}>
+          <Box id={`comment-${task.taskID}`}>
             {commentList.length > 0 ? (
               commentList.map((comment, index) => (
-                <Box key={index} sx={{ my: 0.5 }}>
-                  <Typography variant="body1" display="inline">
+                <Box key={index} sx={{ my: 0.5, wordWrap: "break-word" }}>
+                  <Typography variant="body1" display="inline" >
                     {comment.content}
                   </Typography>
                   <Typography
@@ -144,13 +142,15 @@ export default function TaskDialog({
             关闭
           </Button>
         </DialogActions>
-      </Dialog>
+      </Dialog >
       <TaskEditDialog
+        comments={commentList}
         open={editOpen}
         handleClose={handleEditClose}
-        taskID={taskID}
-        taskName={taskName}
-        taskDetail={taskDetail}
+        taskID={task.taskID}
+        taskName={task.taskName}
+        taskDetail={task.taskDetail}
+        onTaskEdit={onTaskEdit}
       />
     </>
   );
@@ -159,8 +159,6 @@ export default function TaskDialog({
 TaskDialog.propTypes = {
   open: PropTypes.bool.isRequired,
   handleClose: PropTypes.func.isRequired,
-  taskID: PropTypes.number.isRequired,
-  taskName: PropTypes.string.isRequired,
-  taskDetail: PropTypes.string.isRequired,
-  comments: PropTypes.array.isRequired,
+  task: PropTypes.object.isRequired,
+  onTaskEdit: PropTypes.func.isRequired,
 };

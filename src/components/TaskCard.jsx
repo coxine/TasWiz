@@ -1,7 +1,5 @@
 import * as React from "react";
-
 import { Delete, MoreVert } from "@mui/icons-material";
-
 import Accordion from "@mui/material/Accordion";
 import AccordionActions from "@mui/material/AccordionActions";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -12,8 +10,9 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import PropTypes from "prop-types";
 import ReactMarkdown from "react-markdown";
 import TaskDialog from "./TaskDialog";
+import { deleteTask } from "../utils/Tasks";
 
-export default function TaskCard({ task }) {
+export default function TaskCard({ task, onTaskEdit }) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -22,6 +21,13 @@ export default function TaskCard({ task }) {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleDelete = async () => {
+    await deleteTask(task.taskID);
+    console.log(`taskID: ${task.taskID}`);
+    alert("任务删除成功");
+    window.location.reload();
   };
 
   return (
@@ -35,10 +41,11 @@ export default function TaskCard({ task }) {
           {task.taskName}
         </AccordionSummary>
         <AccordionDetails>
-          <Box sx={{ maxHeight: "200px", overflow: "auto" }}>
+          <Box sx={{ maxHeight: "200px", overflow: "auto", wordWrap: "break-word" }}>
             <ReactMarkdown>{task.taskDetail}</ReactMarkdown>
           </Box>
         </AccordionDetails>
+
         <AccordionActions>
           <Button
             variant="contained"
@@ -52,6 +59,7 @@ export default function TaskCard({ task }) {
             variant="outlined"
             disableElevation
             color="error"
+            onClick={handleDelete}
             endIcon={<Delete />}
           >
             删除
@@ -61,10 +69,8 @@ export default function TaskCard({ task }) {
       <TaskDialog
         open={open}
         handleClose={handleClose}
-        taskID={task.taskID}
-        taskName={task.taskName}
-        taskDetail={task.taskDetail}
-        comments={task.comments}
+        task={task}
+        onTaskEdit={onTaskEdit}
       />
     </>
   );
@@ -72,4 +78,5 @@ export default function TaskCard({ task }) {
 
 TaskCard.propTypes = {
   task: PropTypes.object.isRequired,
+  onTaskEdit: PropTypes.func.isRequired,
 };
