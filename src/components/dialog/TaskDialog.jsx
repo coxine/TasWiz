@@ -34,7 +34,6 @@ export default function TaskDialog({ open, handleClose, task, onTaskEdit }) {
 
     try {
       await addComment(task.taskID, newCommentContent);
-      console.log(`taskID: ${task.taskID}, comment: ${newCommentContent}`);
       event.target.comment.value = "";
 
       const newComment = {
@@ -118,7 +117,7 @@ export default function TaskDialog({ open, handleClose, task, onTaskEdit }) {
                     display="inline"
                     sx={{ ml: 1 }}
                   >
-                    {new Date(comment.timestamp).toLocaleString()}
+                    {new Date(Number(comment.timestamp)).toLocaleString()}
                   </Typography>
                 </Box>
               ))

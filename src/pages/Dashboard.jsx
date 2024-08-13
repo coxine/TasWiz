@@ -29,9 +29,6 @@ export default function Dashboard() {
 
   const handleTaskEdit = (updatedTask) => {
     setProjects((prevProjects) => {
-      console.log("updatedTask", updatedTask);
-      console.log("projects", prevProjects);
-
       const updatedProjects = prevProjects.map((project) => ({
         ...project,
         tasks: project.tasks.map((task) =>
@@ -39,7 +36,6 @@ export default function Dashboard() {
         ),
       }));
 
-      console.log("updatedProjects", updatedProjects);
       return updatedProjects;
     });
   };

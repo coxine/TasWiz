@@ -4,7 +4,6 @@ import ProjectCard from "./ProjectCard";
 import PropTypes from "prop-types";
 
 export default function ProjectList({ data, onTaskEdit }) {
-  console.log(data);
   return (
     <Grid container spacing={2}>
       {data.map((project) => (

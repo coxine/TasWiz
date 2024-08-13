@@ -35,7 +35,6 @@ export default function TaskCard({ task, onTaskEdit }) {
 
   const handleDeleteTask = async () => {
     await deleteTask(task.taskID);
-    console.log(`taskID: ${task.taskID}`);
     alert("任务删除成功");
     window.location.reload();
   };

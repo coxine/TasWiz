@@ -59,5 +59,5 @@ export default function NewTaskDialog({ projectID, open, handleClose }) {
 NewTaskDialog.propTypes = {
   open: PropTypes.bool.isRequired,
   handleClose: PropTypes.func.isRequired,
-  projectID: PropTypes.string.isRequired,
+  projectID: PropTypes.number.isRequired,
 };
