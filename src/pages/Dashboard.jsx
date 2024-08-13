@@ -90,7 +90,9 @@ export default function Dashboard() {
             pb: { xs: 8, sm: 12 },
           }}
         >
-          <Typography variant="h4">尚未创建项目！点击右上角“操作中心”新建项目。</Typography>
+          <Typography variant="h4">
+            尚未创建项目！点击右上角“操作中心”新建项目。
+          </Typography>
         </Container>
       </Box>
     );
