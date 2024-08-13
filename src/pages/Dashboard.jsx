@@ -15,7 +15,7 @@ export default function Dashboard() {
     async function fetchProjects() {
       try {
         const result = await getProjects();
-        setProjects(result.data);
+        setProjects(result);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching tasks:", error);
