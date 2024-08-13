@@ -1,5 +1,6 @@
 import axios from "axios";
 import config from "../config/config";
+import handleError from "./HandleError";
 
 export const addComment = async (taskId, comment) => {
   const username = localStorage.getItem("username");
@@ -31,13 +32,7 @@ export const addComment = async (taskId, comment) => {
       throw new Error("评论添加失败，请重试");
     }
   } catch (error) {
-    if (error.response && error.response.status === 401) {
-      alert("未授权");
-      throw new Error("未授权");
-    } else {
-      alert("评论添加失败，请重试");
-      throw new Error("评论添加失败，请重试");
-    }
+    handleError(error);
   }
 };
 
@@ -72,16 +67,7 @@ export const editTask = async (taskId, taskName, taskDetail) => {
       throw new Error("任务编辑失败，请重试");
     }
   } catch (error) {
-    if (error.response && error.response.status === 401) {
-      alert("未授权");
-      throw new Error("未授权");
-    } else if (error.response && error.response.status === 404) {
-      alert("保存失败，任务不存在");
-      throw new Error("保存失败，任务不存在");
-    } else {
-      alert("任务编辑失败，请重试");
-      throw new Error("任务编辑失败，请重试");
-    }
+    handleError(error);
   }
 };
 
@@ -109,16 +95,7 @@ export const deleteTask = async (taskId) => {
       throw new Error("任务删除失败，请重试");
     }
   } catch (error) {
-    if (error.response && error.response.status === 401) {
-      alert("未授权");
-      throw new Error("未授权");
-    } else if (error.response && error.response.status === 404) {
-      alert("任务不存在");
-      throw new Error("任务不存在");
-    } else {
-      alert("任务删除失败，请重试");
-      throw new Error("任务删除失败，请重试");
-    }
+    handleError(error);
   }
 };
 
@@ -146,16 +123,7 @@ export const queryTask = async (taskId) => {
       throw new Error("任务查询失败，请重试");
     }
   } catch (error) {
-    if (error.response && error.response.status === 401) {
-      alert("未授权");
-      throw new Error("未授权");
-    } else if (error.response && error.response.status === 404) {
-      alert("任务不存在");
-      throw new Error("任务不存在");
-    } else {
-      alert("任务查询失败，请重试");
-      throw new Error("任务查询失败，请重试");
-    }
+    handleError(error);
   }
 };
 
@@ -188,15 +156,6 @@ export const addTask = async (taskName, taskDetail, projectId) => {
       throw new Error("任务创建失败，请重试");
     }
   } catch (error) {
-    if (error.response && error.response.status === 401) {
-      alert("未授权");
-      throw new Error("未授权");
-    } else if (error.response && error.response.status === 400) {
-      alert("请求数据无效");
-      throw new Error("请求数据无效");
-    } else {
-      alert("任务创建失败，请重试");
-      throw new Error("任务创建失败，请重试");
-    }
+    handleError(error);
   }
 };

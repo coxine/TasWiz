@@ -1,5 +1,6 @@
 import axios from "axios";
 import config from "../config/config";
+import handleError from "./HandleError";
 
 export const getProjects = async () => {
   const username = localStorage.getItem("username");
@@ -24,16 +25,7 @@ export const getProjects = async () => {
       throw new Error("用户任务查询失败，请重试");
     }
   } catch (error) {
-    if (error.response && error.response.status === 401) {
-      alert("未授权");
-      throw new Error("未授权");
-    } else if (error.response && error.response.status === 404) {
-      alert("用户不存在");
-      throw new Error("用户不存在");
-    } else {
-      alert("用户任务查询失败，请重试");
-      throw new Error("用户任务查询失败，请重试");
-    }
+    handleError(error);
   }
 };
 
@@ -61,16 +53,7 @@ export const deleteProject = async (projectId) => {
       throw new Error("项目删除失败，请重试");
     }
   } catch (error) {
-    if (error.response && error.response.status === 401) {
-      alert("未授权");
-      throw new Error("未授权");
-    } else if (error.response && error.response.status === 404) {
-      alert("项目不存在");
-      throw new Error("项目不存在");
-    } else {
-      alert("项目删除失败，请重试");
-      throw new Error("项目删除失败，请重试");
-    }
+    handleError(error);
   }
 };
 
@@ -101,15 +84,6 @@ export const addProject = async (projectName) => {
       throw new Error("项目创建失败，请重试");
     }
   } catch (error) {
-    if (error.response && error.response.status === 401) {
-      alert("未授权");
-      throw new Error("未授权");
-    } else if (error.response && error.response.status === 400) {
-      alert("请求数据无效");
-      throw new Error("请求数据无效");
-    } else {
-      alert("项目创建失败，请重试");
-      throw new Error("项目创建失败，请重试");
-    }
+    handleError(error);
   }
 };
