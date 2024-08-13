@@ -8,7 +8,7 @@ export default function Footer() {
       <Typography variant="body2" color="text.secondary" align="center">
         {"Copyright © "}
         <Link color="inherit" href="https://github.com/coxine/TasWiz/">
-          TasWiz
+          TasWiz - 任务看板
         </Link>{" "}
         {new Date().getFullYear()}
         {"."}
