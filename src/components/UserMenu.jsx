@@ -81,7 +81,7 @@ export default function UserMenu() {
     const username = localStorage.getItem("username");
     const date = new Date().toLocaleDateString();
     const time = new Date().toLocaleTimeString();
-    const data = JSON.stringify(result.data, null, 2);
+    const data = JSON.stringify(result, null, 2);
     const blob = new Blob([data], { type: "text/json" });
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement("a");
